@@ -1,27 +1,135 @@
-graph = {
-  'A' : ['B','C'],
-  'B' : ['D', 'E'],
-  'C' : ['F'],
-  'D' : [],
-  'E' : ['F'],
-  'F' : []
+import random
+
+def insere_aresta(grafo, a, b):
+  if a not in grafo:
+    grafo[a] = []
+  if b not in grafo:
+    grafo[b] = []
+  grafo[a].append(b)
+  grafo[b].append(a)
+
+def busca_em_largura(grafo, vertice_do_grafo):
+  fila = [] 
+
+  largura = {}
+  l = 1 
+  pai = {} 
+  nivel = {} 
+  aresta = {} 
+
+  fila.append(vertice_do_grafo)
+  largura[vertice_do_grafo] = l
+  pai[vertice_do_grafo] = None
+  nivel[vertice_do_grafo] = 1
+
+  while len(fila):
+    vertice = fila.pop(0) 
+
+    for vizinho in grafo.get(vertice):
+
+      if not largura.get(vizinho): 
+        fila.append(vizinho) 
+        l += 1 
+        largura[vizinho] = l
+        pai[vizinho] = vertice
+        nivel[vizinho] = nivel[vertice] + 1
+
+  return largura, pai, aresta, nivel
+
+grafo = {
+  'A': ['B', 'J'],
+  'B': ['A', 'D', 'I'],
+  'J': ['A', 'I', 'C'],
+  'D': ['B', 'C', 'I', 'E', 'H'],
+  'I': ['B', 'J', 'D'],
+  'C': ['J', 'D'],
+  'E': ['D', 'F'],
+  'H': ['D', 'G'],
+  'F': ['E', 'G'],
+  'G': ['H', 'F']
 }
 
-visited = [] # List to keep track of visited nodes.
-queue = []     #Initialize a queue
+largura, pai, aresta, nivel = busca_em_largura(grafo, 'A')
 
-def bfs(visited, graph, node):
-  visited.append(node)
-  queue.append(node)
+print(list(largura.keys()))
+    for vizinho in grafo.get(vertice):
 
-  while queue:
-    s = queue.pop(0) 
+      if not largura.get(vizinho): 
+        fila.append(vizinho) 
+        l += 1 
+        largura[vizinho] = l
+        pai[vizinho] = vertice
+        nivel[vizinho] = nivel[vertice] + 1
 
-    for neighbour in graph[s]:
-      if neighbour not in visited:
-        visited.append(neighbour)
-        queue.append(neighbour)
+  return largura, pai, aresta, nivel
 
-  print (visited) 
-# Driver Code
-bfs(visited, graph, 'B')
+grafo = {
+  'A': ['B', 'J'],
+  'B': ['A', 'D', 'I'],
+  'J': ['A', 'I', 'C'],
+  'D': ['B', 'C', 'I', 'E', 'H'],
+  'I': ['B', 'J', 'D'],
+  'C': ['J', 'D'],
+  'E': ['D', 'F'],
+  'H': ['D', 'G'],
+  'F': ['E', 'G'],
+  'G': ['H', 'F']
+}
+
+largura, pai, aresta, nivel = busca_em_largura(grafo, 'A')
+
+print(list(largura.keys()))
+    for vizinho in grafo.get(vertice):
+
+      if not largura.get(vizinho): 
+        fila.append(vizinho) 
+        l += 1 
+        largura[vizinho] = l
+        pai[vizinho] = vertice
+        nivel[vizinho] = nivel[vertice] + 1
+
+  return largura, pai, aresta, nivel
+
+grafo = {
+  'A': ['B', 'J'],
+  'B': ['A', 'D', 'I'],
+  'J': ['A', 'I', 'C'],
+  'D': ['B', 'C', 'I', 'E', 'H'],
+  'I': ['B', 'J', 'D'],
+  'C': ['J', 'D'],
+  'E': ['D', 'F'],
+  'H': ['D', 'G'],
+  'F': ['E', 'G'],
+  'G': ['H', 'F']
+}
+
+largura, pai, aresta, nivel = busca_em_largura(grafo, 'A')
+
+print(list(largura.keys()))
+    for vizinho in grafo.get(vertice):
+
+      if not largura.get(vizinho): 
+        fila.append(vizinho) 
+        l += 1 
+        largura[vizinho] = l
+        pai[vizinho] = vertice
+        nivel[vizinho] = nivel[vertice] + 1
+
+  return largura, pai, aresta, nivel
+
+grafo = {
+  'A': ['B', 'J'],
+  'B': ['A', 'D', 'I'],
+  'J': ['A', 'I', 'C'],
+  'D': ['B', 'C', 'I', 'E', 'H'],
+  'I': ['B', 'J', 'D'],
+  'C': ['J', 'D'],
+  'E': ['D', 'F'],
+  'H': ['D', 'G'],
+  'F': ['E', 'G'],
+  'G': ['H', 'F']
+}
+
+largura, pai, aresta, nivel = busca_em_largura(grafo, 'A')
+
+print(list(largura.keys()))
