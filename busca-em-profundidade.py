@@ -1,14 +1,3 @@
-def dfs(graph, start, visited=None):
-  if visited is None:
-    visited = set()
-    print(start)
-  visited.add(start)
-
-  for next in graph[start]:
-    if next not in visited:
-      print(next)
-      dfs(graph, next, visited)
-  return visited
 
 graph = {
   'A': set(['B', 'J']),
@@ -23,4 +12,17 @@ graph = {
   'G': set(['H', 'F'])
 }
 
-dfs(graph, 'A')
+def dfs(graph, start, visited=None, not_random_list=[]):
+  if visited is None:
+    visited = set()
+  visited.add(start)
+  not_random_list.append(start)
+
+  for next in graph[start]:
+    if next not in visited:
+      dfs(graph, next, visited, not_random_list)
+  return not_random_list
+
+result = dfs(graph, 'A')
+
+print(f"Resultado do busca: {result}")

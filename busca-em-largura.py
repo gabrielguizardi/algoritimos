@@ -1,30 +1,3 @@
-def busca_em_largura(grafo, vertice_do_grafo):
-  fila = [] 
-
-  visitados = {}
-  l = 1 
-  pai = {} 
-  nivel = {} 
-  aresta = {} 
-
-  fila.append(vertice_do_grafo)
-  visitados[vertice_do_grafo] = l
-  pai[vertice_do_grafo] = None
-  nivel[vertice_do_grafo] = 1
-
-  while len(fila):
-    vertice = fila.pop(0) 
-
-    for vizinho in grafo.get(vertice):
-      if not visitados.get(vizinho): 
-        fila.append(vizinho) 
-        l += 1 
-        visitados[vizinho] = l
-        pai[vizinho] = vertice
-        nivel[vizinho] = nivel[vertice] + 1
-
-  return visitados
-
 grafo = {
   'A': ['B', 'J'],
   'B': ['A', 'D', 'I'],
@@ -38,6 +11,18 @@ grafo = {
   'G': ['H', 'F']
 }
 
-visitados = busca_em_largura(grafo, 'A')
+def buscar_por_largura(grafo, vertice_inicial):
+  visitados = [vertice_inicial]
+  fila = [vertice_inicial]
 
-print(list(visitados.keys()))
+  while fila:
+    vertice = fila.pop(0) # atribui e remove o primeiro vertice da fila
+
+    for vertice_adjacente in grafo[vertice]:
+      if vertice_adjacente not in visitados:
+        visitados.append(vertice_adjacente)
+        fila.append(vertice_adjacente)
+  
+  return visitados
+
+print(buscar_por_largura(grafo, 'A'))
