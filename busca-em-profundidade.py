@@ -1,5 +1,4 @@
-
-graph = {
+grafo = {
   'A': set(['B', 'J']),
   'B': set(['A', 'D', 'I']),
   'J': set(['A', 'I', 'C']),
@@ -12,17 +11,15 @@ graph = {
   'G': set(['H', 'F'])
 }
 
-def dfs(graph, start, visited=None, not_random_list=[]):
-  if visited is None:
-    visited = set()
-  visited.add(start)
-  not_random_list.append(start)
+def buscar_por_profundidade(grafo, vertice, visitado_aleatorio=set(), visitado_nao_aleatorio=[]):
+  visitado_aleatorio.add(vertice)
+  visitado_nao_aleatorio.append(vertice)
 
-  for next in graph[start]:
-    if next not in visited:
-      dfs(graph, next, visited, not_random_list)
-  return not_random_list
+  for vertice_adjacente in grafo[vertice]:
+    if vertice_adjacente not in visitado_aleatorio:
+      buscar_por_profundidade(grafo, vertice_adjacente, visitado_aleatorio, visitado_nao_aleatorio)
+  return visitado_nao_aleatorio
 
-result = dfs(graph, 'A')
+resultado = buscar_por_profundidade(grafo, 'A')
 
-print(f"Resultado do busca: {result}")
+print(f"Resultado do busca: {resultado}")
