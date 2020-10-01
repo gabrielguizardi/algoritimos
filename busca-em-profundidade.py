@@ -24,8 +24,7 @@ def buscar_por_profundidade(grafo, vertice_inicial):
     visitados.append(vertice_atual)
 
     for adjacente in grafo[vertice_atual]:
-      if adjacente not in pilha:
-        pilha.append(adjacente)
+      pilha.append(adjacente)
 
   return visitados
 
