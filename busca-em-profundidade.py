@@ -11,14 +11,23 @@ grafo = {
   'G': set(['H', 'F'])
 }
 
-def buscar_por_profundidade(grafo, vertice, visitado_aleatorio=set(), visitado_nao_aleatorio=[]):
-  visitado_aleatorio.add(vertice)
-  visitado_nao_aleatorio.append(vertice)
+def buscar_por_profundidade(grafo, vertice_inicial):
+  pilha = [vertice_inicial] 
+  visitados = []
 
-  for vertice_adjacente in grafo[vertice]:
-    if vertice_adjacente not in visitado_aleatorio:
-      buscar_por_profundidade(grafo, vertice_adjacente, visitado_aleatorio, visitado_nao_aleatorio)
-  return visitado_nao_aleatorio
+  while pilha:
+    vertice_atual = pilha.pop()
+
+    if vertice_atual in visitados:
+      continue
+
+    visitados.append(vertice_atual)
+
+    for adjacente in grafo[vertice_atual]:
+      if adjacente not in pilha:
+        pilha.append(adjacente)
+
+  return visitados
 
 resultado = buscar_por_profundidade(grafo, 'A')
 
